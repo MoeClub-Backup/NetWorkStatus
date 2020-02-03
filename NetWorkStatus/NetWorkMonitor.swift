@@ -24,10 +24,11 @@ open class NetWorkMonitor: NSObject {
     }
     
     // nettop -x -k state -k interface -k rx_dupe -k rx_ooo -k re-tx -k rtt_avg -k rcvsize -k tx_win -k tc_class -k tc_mgt -k cc_algo -k P -k C -k R -k W -k arch -l 1 -t wifi -t wired
+    // nettop -x -l 1 -J bytes_in,bytes_out -t external
     @objc func updateNetWorkData() {
         let task = Process()
         task.launchPath = "/usr/bin/nettop"
-        task.arguments = ["-x", "-k", "state", "-k", "interface", "-k", "rx_dupe", "-k", "rx_ooo", "-k", "re-tx", "-k", "rtt_avg", "-k", "rcvsize", "-k", "tx_win", "-k", "tc_class", "-k", "tc_mgt", "-k", "cc_algo", "-k", "P", "-k", "C", "-k", "R", "-k", "W", "-k", "arch", "-l", "1", "-t", "wifi", "-t", "wired"]
+        task.arguments = ["-x", "-l", "1", "-J", "bytes_in,bytes_out", "-t", "external"]
         
         let pipe = Pipe()
         task.standardOutput = pipe
